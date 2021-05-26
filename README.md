@@ -2,6 +2,8 @@
 
 [PHPStan](https://phpstan.org/) (PHP Static Analysis tool) extension for [coc.nvim](https://github.com/neoclide/coc.nvim).
 
+<img width="780" alt="coc-phpstan-demo" src="https://user-images.githubusercontent.com/188642/119638316-7fc24a80-be51-11eb-8b0e-5ec592a90154.gif">
+
 ## Install
 
 **CocInstall**:
