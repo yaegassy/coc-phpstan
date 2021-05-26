@@ -9,7 +9,7 @@
 **CocInstall**:
 
 ```vim
-:CocInstall @yaegassy/coc-phpstan`
+:CocInstall @yaegassy/coc-phpstan
 ```
 
 > scoped package
