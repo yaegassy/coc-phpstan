@@ -65,9 +65,9 @@ export class LintEngine {
     args.push('--no-interaction');
     args.push('--error-format=json');
 
-    const ruleLevel = this.extensionConfig.get<number | null>('level', null);
+    const ruleLevel = this.extensionConfig.get<string | null>('level', null);
     if (ruleLevel !== null) {
-      args.push(`--level=${ruleLevel.toString()}`);
+      args.push(`--level=${ruleLevel}`);
     }
 
     const analyzeMemoryLimit = this.extensionConfig.get<string>('memoryLimit', '-1');
