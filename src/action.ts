@@ -30,7 +30,7 @@ export class PHPStanCodeActionProvider implements CodeActionProvider {
     const codeActions: CodeAction[] = [];
 
     /** Add phpstan ignore comment */
-    if (range.start.line === range.end.line && range.start.character === 0 && context.diagnostics.length > 0) {
+    if (this.lineRange(range) && context.diagnostics.length > 0) {
       let existsPHPStanDiagnostics = false;
       context.diagnostics.forEach((d) => {
         if (d.source === 'phpstan') {
@@ -85,5 +85,12 @@ export class PHPStanCodeActionProvider implements CodeActionProvider {
     }
 
     return codeActions;
+  }
+
+  private lineRange(r: Range): boolean {
+    return (
+      (r.start.line + 1 === r.end.line && r.start.character === 0 && r.end.character === 0) ||
+      (r.start.line === r.end.line && r.start.character === 0)
+    );
   }
 }
