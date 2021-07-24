@@ -67,21 +67,21 @@ export class PHPStanCodeActionProvider implements CodeActionProvider {
         });
       }
 
-      // MEMO: Expose features as they become necessary.
-      //
       // Add @phpstan-ignore-line
-      // ------------------------
-      // if (!thisLineContent.startsWith('/**') && !thisLineContent.startsWith('*') && existsPHPStanDiagnostics) {
-      //   const edit = TextEdit.replace(range, line + ' /* @phpstan-ignore-line */');
-      //   codeActions.push({
-      //     title: 'Add @phpstan-ignore-line',
-      //     edit: {
-      //       changes: {
-      //         [doc.uri]: [edit],
-      //       },
-      //     },
-      //   });
-      // }
+      if (!thisLineContent.startsWith('/**') && !thisLineContent.startsWith('*') && existsPHPStanDiagnostics) {
+        const edit = TextEdit.replace(
+          range,
+          `${line} /* @phpstan-ignore-line */${range.start.line + 1 === range.end.line ? '\n' : ''}`
+        );
+        codeActions.push({
+          title: 'Add @phpstan-ignore-line',
+          edit: {
+            changes: {
+              [doc.uri]: [edit],
+            },
+          },
+        });
+      }
     }
 
     return codeActions;

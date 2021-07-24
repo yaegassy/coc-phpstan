@@ -53,6 +53,7 @@ If you wish to use a [configuration file](https://phpstan.org/config-reference) 
 ## Code Actions
 
 - `Add @phpstan-ignore-next-line`
+- `Add @phpstan-ignore-line`
 
 ## Thanks
 
