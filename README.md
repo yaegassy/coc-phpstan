@@ -52,6 +52,18 @@ If you wish to use a [configuration file](https://phpstan.org/config-reference) 
 
 ## Code Actions
 
+**Example key mapping (Code Action related)**:
+
+```vim
+nmap <silent> ga <Plug>(coc-codeaction-line)
+```
+
+**Usage**:
+
+In the line with diagnostic message, enter the mapped key (e.g. `ga`) and you will see a list of code actions that can be performed.
+
+**Actions**:
+
 - `Add @phpstan-ignore-next-line`
 - `Add @phpstan-ignore-line`
 
