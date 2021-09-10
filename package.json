@@ -1,6 +1,6 @@
 {
   "name": "@yaegassy/coc-phpstan",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "PHPStan (PHP Static Analysis tool) extension for coc.nvim",
   "author": "yaegassy <yosstools@gmail.com>",
   "license": "MIT",
@@ -45,11 +45,11 @@
     "eslint": "^7.14.0",
     "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-prettier": "^3.1.4",
+    "https-proxy-agent": "^5.0.0",
+    "node-fetch": "^2.6.0",
     "prettier": "^2.2.0",
     "rimraf": "^3.0.2",
-    "typescript": "^4.1.2",
-    "https-proxy-agent": "^5.0.0",
-    "node-fetch": "^2.6.0"
+    "typescript": "^4.1.2"
   },
   "activationEvents": [
     "onLanguage:php"
