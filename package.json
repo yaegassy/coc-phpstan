@@ -55,6 +55,15 @@
     "onLanguage:php"
   ],
   "contributes": {
+    "rootPatterns": [
+      {
+        "filetype": "php",
+        "patterns": [
+          "phpstan.neon",
+          "phpstan.neon.dist"
+        ]
+      }
+    ],
     "configuration": {
       "type": "object",
       "title": "coc-phpstan configuration",
