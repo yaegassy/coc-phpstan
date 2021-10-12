@@ -87,7 +87,7 @@ export class LintEngine {
     this.outputChannel.appendLine(`Args: ${args.join(' ')}`);
     this.outputChannel.appendLine(`File: ${filePath}\n`);
 
-    this.collection.clear();
+    this.collection.set(textDocument.uri);
 
     return new Promise(function (resolve) {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
