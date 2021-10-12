@@ -117,7 +117,14 @@ export class LintEngine {
       for (const messageItem of filepathItem.messages) {
         const line = messageItem.line ? messageItem.line - 1 : 0;
         const range = Range.create(Position.create(line, 0), Position.create(line, 0));
-        diagnostics.push(Diagnostic.create(range, messageItem.message, DiagnosticSeverity.Error, 'analyze'));
+        diagnostics.push(
+          Diagnostic.create(
+            range,
+            messageItem.message + ` (ignorable: ${messageItem.ignorable})`,
+            DiagnosticSeverity.Error,
+            'analyze'
+          )
+        );
       }
     }
 
