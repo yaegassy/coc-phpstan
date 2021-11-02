@@ -42,7 +42,7 @@ If you wish to use a [configuration file](https://phpstan.org/config-reference) 
 
 - `phpstan.enable`: Enable coc-phpstan extension, default: `true`
 - `phpstan.toolPath`: The path to the phpstan (Absolute path), default: `""`
-- `phpstan.level`: Specifies the rule level (0 - 8 and max) to run, If you apply this setting, the level setting in the phpstan.neon file will be ignored, e.g. valid option `"8"`, `"max"`, default: `null`
+- `phpstan.level`: Specifies the rule level (0 - 9 and max) to run, If you apply this setting, the level setting in the phpstan.neon file will be ignored, e.g. valid option `"9"`, `"max"`, default: `null`
 - `phpstan.configuration`: Specifies the path to a configuration file, default: `null`
 - `phpstan.memoryLimit`: Specifies the memory limit in the same format php.ini accepts, Example: -1, 1024M, 2G, default: `"-1"`
 

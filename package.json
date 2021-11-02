@@ -81,7 +81,7 @@
         "phpstan.level": {
           "type": "string",
           "default": null,
-          "description": "Specifies the rule level (0 - 8 and max) to run, If you apply this setting, the level setting in the phpstan.neon file will be ignored"
+          "description": "Specifies the rule level (0 - 9 and max) to run, If you apply this setting, the level setting in the phpstan.neon file will be ignored"
         },
         "phpstan.configuration": {
           "type": "string",
