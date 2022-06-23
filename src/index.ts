@@ -102,7 +102,7 @@ async function downloadWrapper(context: ExtensionContext) {
     } catch (e) {
       console.error(e);
       msg = 'Download phpstan failed, you can get it from https://github.com/phpstan/phpstan';
-      window.showMessage(msg, 'error');
+      window.showErrorMessage(msg);
       return;
     }
   } else {
