@@ -34,9 +34,9 @@ Plug 'yaegassy/coc-phpstan', {'do': 'yarn install --frozen-lockfile'}
    - Mac/Linux: `~/.config/coc/extensions/@yaegassy/coc-phpstan-data/phpstan`
    - Windows: `~/AppData/Local/coc/extensions/@yaegassy/coc-phpstan-data/phpstan`
 
-## "phpstan.neon" or "phpstan.neon.dist" configuration file
+## "phpstan.neon", "phpstan.neon.dist" or "phpstan.dist.neon" configuration file
 
-If you wish to use a [configuration file](https://phpstan.org/config-reference) you should place the `phpstan.neon` or `phpstan.neon.dist` file in the root of your project folder
+If you wish to use a [configuration file](https://phpstan.org/config-reference) you should place the `phpstan.neon`, `phpstan.neon.dist` or `phpstan.dist.neon` file in the root of your project folder
 
 ## Configuration options ("coc-settings.json" or ".vim/coc-settings.json")
 

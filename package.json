@@ -60,7 +60,8 @@
         "filetype": "php",
         "patterns": [
           "phpstan.neon",
-          "phpstan.neon.dist"
+          "phpstan.neon.dist",
+          "phpstan.dist.neon"
         ]
       }
     ],
