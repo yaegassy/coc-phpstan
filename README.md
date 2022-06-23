@@ -49,6 +49,7 @@ If you wish to use a [configuration file](https://phpstan.org/config-reference) 
 ## Commands
 
 - `phpstan.download`: Download PHPStan
+- `phpstan.showOutput`: Show phpstan output channel
 
 ## Code Actions
 

@@ -100,6 +100,10 @@
       {
         "command": "phpstan.download",
         "title": "Download PHPStan"
+      },
+      {
+        "command": "phpstan.showOutput",
+        "title": "Show phpstan output channel"
       }
     ]
   }

@@ -1,11 +1,9 @@
 import { commands, DocumentSelector, ExtensionContext, languages, window, workspace } from 'coc.nvim';
-
 import fs from 'fs';
 import path from 'path';
-
+import { PHPStanCodeActionProvider } from './action';
 import { download } from './downloader';
 import { LintEngine } from './lint';
-import { PHPStanCodeActionProvider } from './action';
 
 export async function activate(context: ExtensionContext): Promise<void> {
   const extensionConfig = workspace.getConfiguration('phpstan');
@@ -18,6 +16,14 @@ export async function activate(context: ExtensionContext): Promise<void> {
   }
 
   const outputChannel = window.createOutputChannel('phpstan');
+
+  context.subscriptions.push(
+    commands.registerCommand('phpstan.showOutput', () => {
+      if (outputChannel) {
+        outputChannel.show();
+      }
+    })
+  );
 
   context.subscriptions.push(
     commands.registerCommand('phpstan.download', async () => {
