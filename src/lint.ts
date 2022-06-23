@@ -13,7 +13,6 @@ import {
 } from 'coc.nvim';
 
 import cp from 'child_process';
-
 import fs from 'fs';
 
 export type PHPStanDiagnosticsType = {
