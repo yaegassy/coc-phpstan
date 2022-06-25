@@ -43,15 +43,19 @@ export async function activate(context: ExtensionContext): Promise<void> {
     }
   }
 
-  // Install "tlint" if it does not exist.
-  if (!toolPath) {
-    await downloadWrapper(context);
-    if (fs.existsSync(path.join(context.storagePath, 'phpstan'))) {
-      toolPath = path.join(context.storagePath, 'phpstan');
-    } else {
-      return;
+  // Donwload "phpstan" if it does not exist.
+  if (extensionConfig.get<boolean>('download.checkOnStartup', true)) {
+    if (!toolPath) {
+      await downloadWrapper(context);
+      if (fs.existsSync(path.join(context.storagePath, 'phpstan'))) {
+        toolPath = path.join(context.storagePath, 'phpstan');
+      } else {
+        return;
+      }
     }
   }
+
+  if (!toolPath) return;
 
   const { subscriptions } = context;
   const engine = new LintEngine(toolPath, outputChannel);

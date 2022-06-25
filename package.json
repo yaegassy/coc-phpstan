@@ -93,6 +93,11 @@
           "type": "string",
           "default": "-1",
           "description": "Specifies the memory limit in the same format php.ini accepts, Example: -1, 1024M, 2G"
+        },
+        "phpstan.download.checkOnStartup": {
+          "type": "boolean",
+          "default": true,
+          "description": "Perform built-in download if phpstan is not present at startup"
         }
       }
     },
