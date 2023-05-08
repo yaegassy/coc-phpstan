@@ -1,14 +1,14 @@
 import {
-  ExtensionContext,
+  Diagnostic,
   DiagnosticCollection,
+  DiagnosticSeverity,
+  ExtensionContext,
   languages,
   OutputChannel,
+  Position,
+  Range,
   TextDocument,
   workspace,
-  Diagnostic,
-  Range,
-  Position,
-  DiagnosticSeverity,
 } from 'coc.nvim';
 
 import neon from 'neon-js';

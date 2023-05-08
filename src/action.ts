@@ -2,6 +2,8 @@ import {
   CodeAction,
   CodeActionContext,
   CodeActionProvider,
+  DocumentSelector,
+  ExtensionContext,
   languages,
   Position,
   Range,
@@ -10,10 +12,13 @@ import {
   workspace,
 } from 'coc.nvim';
 
-export class PHPStanCodeActionProvider implements CodeActionProvider {
-  private readonly source = 'phpstan';
-  private diagnosticCollection = languages.createDiagnosticCollection(this.source);
+export function register(context: ExtensionContext) {
+  const languageSelector: DocumentSelector = [{ language: 'php', scheme: 'file' }];
+  const codeActionProvider = new PHPStanCodeActionProvider();
+  context.subscriptions.push(languages.registerCodeActionProvider(languageSelector, codeActionProvider, 'phpstan'));
+}
 
+class PHPStanCodeActionProvider implements CodeActionProvider {
   public async provideCodeActions(document: TextDocument, range: Range, context: CodeActionContext) {
     const doc = workspace.getDocument(document.uri);
     const wholeRange = Range.create(0, 0, doc.lineCount, 0);

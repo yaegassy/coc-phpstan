@@ -1,15 +1,15 @@
-import { commands, DocumentSelector, ExtensionContext, languages, window, workspace } from 'coc.nvim';
+import { commands, ExtensionContext, window, workspace } from 'coc.nvim';
+
 import fs from 'fs';
 import path from 'path';
-import { PHPStanCodeActionProvider } from './action';
+
+import * as phpstanCodeActionFeature from './action';
 import { download } from './downloader';
-import { LintEngine } from './lint';
 import * as neonLintFeature from './neonLint';
+import * as phpstanLintFeature from './phpstanLint';
 
 export async function activate(context: ExtensionContext): Promise<void> {
-  const extensionConfig = workspace.getConfiguration('phpstan');
-  const isEnable = extensionConfig.get<boolean>('enable', true);
-  if (!isEnable) return;
+  if (!workspace.getConfiguration('phpstan').get('enable')) return;
 
   const extensionStoragePath = context.storagePath;
   if (!fs.existsSync(extensionStoragePath)) {
@@ -33,7 +33,7 @@ export async function activate(context: ExtensionContext): Promise<void> {
   );
 
   // 1. phpstan.toolPath
-  let toolPath = extensionConfig.get('toolPath', '');
+  let toolPath = workspace.getConfiguration('phpstan').get('toolPath', '');
   if (!toolPath) {
     if (fs.existsSync(path.join(workspace.root, 'vendor', 'bin', 'phpstan'))) {
       // 2. Project's "phpstan"
@@ -45,7 +45,7 @@ export async function activate(context: ExtensionContext): Promise<void> {
   }
 
   // Donwload "phpstan" if it does not exist.
-  if (extensionConfig.get<boolean>('download.checkOnStartup', true)) {
+  if (workspace.getConfiguration('phpstan').get<boolean>('download.checkOnStartup', true)) {
     if (!toolPath) {
       await downloadWrapper(context);
       if (fs.existsSync(path.join(context.storagePath, 'phpstan'))) {
@@ -58,46 +58,9 @@ export async function activate(context: ExtensionContext): Promise<void> {
 
   if (!toolPath) return;
 
-  const { subscriptions } = context;
-  const engine = new LintEngine(toolPath, outputChannel);
-
-  //
-  // lint onOpen
-  //
-
-  workspace.documents.map(async (doc) => {
-    await engine.lint(doc.textDocument);
-  });
-
-  workspace.onDidOpenTextDocument(
-    async (e) => {
-      await engine.lint(e);
-    },
-    null,
-    subscriptions
-  );
-
-  //
-  // lint onSave
-  //
-
-  workspace.onDidSaveTextDocument(
-    async (e) => {
-      await engine.lint(e);
-    },
-    null,
-    subscriptions
-  );
-
+  phpstanLintFeature.register(context, toolPath, outputChannel);
   neonLintFeature.register(context, outputChannel);
-
-  //
-  // Code actions
-  //
-
-  const languageSelector: DocumentSelector = [{ language: 'php', scheme: 'file' }];
-  const codeActionProvider = new PHPStanCodeActionProvider();
-  context.subscriptions.push(languages.registerCodeActionProvider(languageSelector, codeActionProvider, 'phpstan'));
+  phpstanCodeActionFeature.register(context);
 }
 
 async function downloadWrapper(context: ExtensionContext) {

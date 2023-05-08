@@ -2,6 +2,7 @@ import {
   Diagnostic,
   DiagnosticCollection,
   DiagnosticSeverity,
+  ExtensionContext,
   languages,
   OutputChannel,
   Position,
@@ -15,7 +16,33 @@ import {
 import cp from 'child_process';
 import fs from 'fs';
 
-export type PHPStanDiagnosticsType = {
+export function register(context: ExtensionContext, toolPath: string, outputChannel: OutputChannel) {
+  const engine = new LintEngine(toolPath, outputChannel);
+
+  // lint onOpen
+  workspace.documents.map(async (doc) => {
+    await engine.lint(doc.textDocument);
+  });
+
+  workspace.onDidOpenTextDocument(
+    async (e) => {
+      await engine.lint(e);
+    },
+    null,
+    context.subscriptions
+  );
+
+  // lint onSave
+  workspace.onDidSaveTextDocument(
+    async (e) => {
+      await engine.lint(e);
+    },
+    null,
+    context.subscriptions
+  );
+}
+
+type PHPStanDiagnosticsType = {
   totals: {
     errors: number;
     file_errors: number;
@@ -33,7 +60,7 @@ export type PHPStanDiagnosticsType = {
   errors: string[];
 };
 
-export class LintEngine {
+class LintEngine {
   private collection: DiagnosticCollection;
   private toolPath: string;
   private outputChannel: OutputChannel;
@@ -90,7 +117,7 @@ export class LintEngine {
 
     return new Promise(function (resolve) {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      cp.execFile(self.toolPath, [...args, filePath], opts, function (error, stdout, stderr) {
+      cp.execFile(self.toolPath, [...args, filePath], opts, function (_error, stdout, stderr) {
         if (stderr) {
           self.outputChannel.appendLine(`**STDERR**\n\n${stderr}`);
         }
