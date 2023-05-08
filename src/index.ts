@@ -4,6 +4,7 @@ import path from 'path';
 import { PHPStanCodeActionProvider } from './action';
 import { download } from './downloader';
 import { LintEngine } from './lint';
+import * as neonLintFeature from './neonLint';
 
 export async function activate(context: ExtensionContext): Promise<void> {
   const extensionConfig = workspace.getConfiguration('phpstan');
@@ -87,6 +88,8 @@ export async function activate(context: ExtensionContext): Promise<void> {
     null,
     subscriptions
   );
+
+  neonLintFeature.register(context, outputChannel);
 
   //
   // Code actions
