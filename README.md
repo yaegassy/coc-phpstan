@@ -38,6 +38,32 @@ Plug 'yaegassy/coc-phpstan', {'do': 'yarn install --frozen-lockfile'}
 
 If you wish to use a [configuration file](https://phpstan.org/config-reference) you should place the `phpstan.neon`, `phpstan.neon.dist` or `phpstan.dist.neon` file in the root of your project folder
 
+## Linting of NEON file
+
+This extension includes a feature to perform linting using the `neon-js` library in a phpstan configuration file (`phpstan.neon`, `phpstan.neon.dist` or `phpstan.dist.neon`).
+
+To run this linting feature, you need the following 2 additional settings.
+
+1. The "filetype" must be `yaml.neon` for this `neon-js` lint to work.
+
+   Please add the following settings to your `.vimrc` or `init.vim` file.
+
+   ```vim
+   au BufNewFile,BufRead *.neon,*.neon.dist set ft=yaml.neon
+   ```
+
+2. You also need to set `g:coc_filetype_map` in `.vimrc` or `init.vim`.
+
+   ```vim
+   let g:coc_filetype_map = {
+     \ 'yaml.neon': 'neon',
+     \ }
+   ```
+
+---
+
+- [DEMO](https://github.com/yaegassy/coc-phpstan/pull/2#issue-1700077931)
+
 ## Configuration options ("coc-settings.json" or ".vim/coc-settings.json")
 
 - `phpstan.enable`: Enable coc-phpstan extension, default: `true`
@@ -46,6 +72,7 @@ If you wish to use a [configuration file](https://phpstan.org/config-reference) 
 - `phpstan.configuration`: Specifies the path to a configuration file, default: `null`
 - `phpstan.memoryLimit`: Specifies the memory limit in the same format php.ini accepts, Example: -1, 1024M, 2G, default: `"-1"`
 - `phpstan.download.checkOnStartup`: Perform built-in download if phpstan is not present at startup, default: `true`
+- `phpstan.neonLint.enable`: Enable neon-js lint (diagnostics). It will only work if the file name is `phpstan.neon`, `phpstan.neon.dist` or `phpstan.dist.neon`, default: `true`
 
 ## Commands
 
@@ -72,6 +99,7 @@ In the line with diagnostic message, enter the mapped key (e.g. `ga`) and you wi
 ## Thanks
 
 - [phpstan/phpstan](https://github.com/phpstan/phpstan)
+- [matej21/neon-js](https://github.com/matej21/neon-js)
 
 ## License
 

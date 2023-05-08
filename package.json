@@ -52,7 +52,9 @@
     "typescript": "^4.7.4"
   },
   "activationEvents": [
-    "onLanguage:php"
+    "onLanguage:php",
+    "onLanguage:neon",
+    "onLanguage:yaml.neon"
   ],
   "contributes": {
     "rootPatterns": [
@@ -98,6 +100,11 @@
           "type": "boolean",
           "default": true,
           "description": "Perform built-in download if phpstan is not present at startup"
+        },
+        "phpstan.neonLint.enable": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable neon-js lint (diagnostics). It will only work if the file name is `phpstan.neon`, `phpstan.neon.dist` or `phpstan.dist.neon`"
         }
       }
     },
@@ -111,5 +118,8 @@
         "title": "Show phpstan output channel"
       }
     ]
+  },
+  "dependencies": {
+    "neon-js": "^1.1.2"
   }
 }
