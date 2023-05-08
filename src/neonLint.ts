@@ -14,6 +14,8 @@ import {
 import neon from 'neon-js';
 
 export function register(context: ExtensionContext, outputChannel: OutputChannel) {
+  if (!workspace.getConfiguration('phpstan').get('neonLint.enable')) return;
+
   const engine = new NeonLintEngine(outputChannel);
 
   workspace.documents.map(async (doc) => {
