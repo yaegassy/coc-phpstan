@@ -56,7 +56,7 @@ To run this linting feature, you need the following 2 additional settings.
 
    ```vim
    let g:coc_filetype_map = {
-     \ 'yaml.ansible': 'ansible',
+     \ 'yaml.neon': 'neon',
      \ }
    ```
 
