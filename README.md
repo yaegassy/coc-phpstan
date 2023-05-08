@@ -60,6 +60,10 @@ To run this linting feature, you need the following 2 additional settings.
      \ }
    ```
 
+---
+
+- [DEMO](https://github.com/yaegassy/coc-phpstan/pull/2#issue-1700077931)
+
 ## Configuration options ("coc-settings.json" or ".vim/coc-settings.json")
 
 - `phpstan.enable`: Enable coc-phpstan extension, default: `true`
