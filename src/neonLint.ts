@@ -70,11 +70,10 @@ class NeonLintEngine {
 
     this.outputChannel.appendLine(`${'#'.repeat(10)} phpstan-neon\n`);
 
-    this.collection.set(textDocument.uri);
-
     try {
       neon.decode(text);
       this.outputChannel.appendLine(`RES: success\n`);
+      this.collection.set(textDocument.uri, null);
     } catch (e: any) {
       if (e instanceof neon.Error) {
         this.collection.set(textDocument.uri, this.getDiagnostics(e));
