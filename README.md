@@ -40,6 +40,8 @@ If you wish to use a [configuration file](https://phpstan.org/config-reference) 
 
 ## Linting of NEON file
 
+This extension includes a feature to perform linting using the `neon-js` library in a phpstan configuration file (`phpstan.neon`, `phpstan.neon.dist` or `phpstan.dist.neon`).
+
 To run this linting feature, the filetype must be `neon`.
 
 Install "neon" related plugin (e.g. [yaegassy/nette-neon.vim](https://github.com/yaegassy/nette-neon.vim)).
