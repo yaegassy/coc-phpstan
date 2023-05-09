@@ -40,25 +40,9 @@ If you wish to use a [configuration file](https://phpstan.org/config-reference) 
 
 ## Linting of NEON file
 
-This extension includes a feature to perform linting using the `neon-js` library in a phpstan configuration file (`phpstan.neon`, `phpstan.neon.dist` or `phpstan.dist.neon`).
+To run this linting feature, the filetype must be `neon`.
 
-To run this linting feature, you need the following 2 additional settings.
-
-1. The "filetype" must be `yaml.neon` for this `neon-js` lint to work.
-
-   Please add the following settings to your `.vimrc` or `init.vim` file.
-
-   ```vim
-   au BufNewFile,BufRead *.neon,*.neon.dist set ft=yaml.neon
-   ```
-
-2. You also need to set `g:coc_filetype_map` in `.vimrc` or `init.vim`.
-
-   ```vim
-   let g:coc_filetype_map = {
-     \ 'yaml.neon': 'neon',
-     \ }
-   ```
+Install "neon" related plugin (e.g. [yaegassy/nette-neon.vim](https://github.com/yaegassy/nette-neon.vim)).
 
 ---
 
