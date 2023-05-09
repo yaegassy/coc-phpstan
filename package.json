@@ -53,8 +53,7 @@
   },
   "activationEvents": [
     "onLanguage:php",
-    "onLanguage:neon",
-    "onLanguage:yaml.neon"
+    "onLanguage:neon"
   ],
   "contributes": {
     "rootPatterns": [
